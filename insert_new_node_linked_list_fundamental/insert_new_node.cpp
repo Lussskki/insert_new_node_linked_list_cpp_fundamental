@@ -45,6 +45,21 @@ void insert_at_the_last(Node** head, int new_value)
 	// 4. insert new node after last node (at the end)
 	last->Next = new_node;
 }
+void insert_after(Node* previous, int new_value)
+{
+	// 1. check if previous node is null
+	if (previous == NULL)
+	{
+		std::cout << "Previous can not be NULL" << std::endl;
+		return;
+	}
+	// 2. prepare a new node
+	Node* new_node = new Node();
+	new_node->Value = new_value;
+	// 3. insert new node after previous
+	new_node->Next = previous->Next;
+	previous->Next = new_node;
+}
 
 int main()
 {
@@ -61,6 +76,7 @@ int main()
 
 	insert_at_the_front(&head, -1);
 	insert_at_the_last(&head, -3);
+	insert_after(second, -2);
 	print_list(head);
 
 	return 0;
